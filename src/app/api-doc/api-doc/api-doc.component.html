@@ -1,0 +1,42 @@
+<div>
+    <sw-api-doc-info [info]="doc.info"></sw-api-doc-info>
+</div>
+
+<div class="my-4 mx-5 py-5 px-4">
+    <cui-layout>
+        <cui-layout-sider [width]="300" [class]="'mr-4'">
+            <nz-collapseset [nzBordered]="false">
+                <nz-collapse *ngFor="let tag of tags" [nzTitle]="tag.description" [nzActive]="tag.active"
+                [nzDisabled]="tag.disabled">
+                
+                <ul>
+                  <li *ngFor="let r of tag.paths" class="p-2" [ngClass]="{'bg-primary text-white': cuurOperate == r}">
+                    <a (click)="viewOperate(r)">
+                      <span class="badge badge-{{getMethodColor(r.method)}}">{{r.method | uppercase}}</span> {{r.summary}}</a>
+                    <!-- <span></span> {{r.path}} -->
+                  </li>
+                </ul>
+                
+                </nz-collapse>
+            </nz-collapseset>
+        </cui-layout-sider>
+        <cui-layout>
+          <cui-layout-content>
+            <ng-container *ngIf="cuurOperate">
+              <div class="d-flex">
+                <div>
+                    <h4>{{cuurOperate.summary}}</h4>
+                    <h5 class="my-2"><span class="badge badge-{{getMethodColor(cuurOperate.method)}}">{{cuurOperate.method | uppercase}}</span> {{cuurOperate.path}}</h5>
+                </div>
+                <div class="ml-auto">
+                  <button type="button" class="btn btn-primary" (click)="run(cuurOperate)"> 运 行 </button>
+                </div>
+              </div>
+              <sw-api-doc-operate *ngIf="cuurOperate" [operate]="cuurOperate.detail"></sw-api-doc-operate>
+              <button type="button" class="btn btn-primary" (click)="run(cuurOperate)"> 运 行 </button>
+              <div *ngIf="cuurOperate.result">{{cuurOperate.result | json}}</div>
+            </ng-container>  
+          </cui-layout-content>
+        </cui-layout>
+    </cui-layout>
+</div>

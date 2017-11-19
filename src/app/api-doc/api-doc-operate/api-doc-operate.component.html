@@ -1,0 +1,80 @@
+<div *ngIf="hasResponseWithBody">
+  <div *ngFor="let res of responseWithBody">
+      <h5 class="my-3">响应类 ({{res.code}})</h5>
+      <p>{{res.response.description}}</p>
+      <div>
+        {{res.response.schema | json}}
+      </div>
+      <div>
+        响应类型：
+        <select>
+          <option *ngFor="let pro of operate.produces">{{pro}}</option>
+        </select>
+      </div>
+  </div>
+</div>
+
+  <div class="mt-4">
+    <h5 class="my-3">参数</h5>
+    <div>
+      参数类型：
+      <select>
+          <option *ngFor="let con of operate.consumes">{{con}}</option>
+      </select>
+    </div>
+    <!-- <p *ngFor="let p of parameters">{{p | json}}</p> -->
+    <a (click)="showOptionalParameters = !showOptionalParameters">{{showOptionalParameters ? '收起' : '展开'}} 可选参数</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>参数名</th>
+          <th>值</th>
+          <th>描述</th>
+          <th>参数类型</th>
+          <th>数据类型</th>
+          <th>必须</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let param of parameterRequired">
+          <td>{{param.name}}</td>
+          <td><input type="text"></td>
+          <td>{{param.description}}</td>
+          <td>{{param.in}}</td>
+          <td>{{param.type}}</td>
+          <td>{{param.required}}</td>
+        </tr>
+        <tr *ngFor="let param of parameterOptional" [hidden]="!showOptionalParameters">
+          <td>{{param.name}}</td>
+          <td><input type="text"></td>
+          <td>{{param.description}}</td>
+          <td>{{param.in}}</td>
+          <td>{{param.type}}</td>
+          <td>{{param.required}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4">
+    <h5 class="my-3">响应消息</h5>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th>状态码</th>
+            <th>原因</th>
+            <th>响应模型</th>
+            <th>头</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let msg of responseMessage">
+            <td>{{msg.code}}</td>
+            <td>{{msg.response.description}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
