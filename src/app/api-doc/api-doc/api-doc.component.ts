@@ -15,6 +15,8 @@ export class ApiDocComponent implements OnInit, OnChanges {
 
   cuurOperate;
 
+  definitions;
+
   constructor(private http: Http) { }
 
   ngOnInit() {
@@ -38,6 +40,7 @@ export class ApiDocComponent implements OnInit, OnChanges {
   chDoc() {
     if (this.doc) {
       this.tags = this.doc.tags;
+      this.definitions = this.doc.definitions;
 
       if (this.tags) {
         this.tags.forEach(tag => {

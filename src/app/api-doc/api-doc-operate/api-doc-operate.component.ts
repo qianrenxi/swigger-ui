@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ApiDocOperateComponent implements OnInit {
 
   @Input() operate: any;
+  @Input() definitions: any;
 
   showOptionalParameters = false;
 

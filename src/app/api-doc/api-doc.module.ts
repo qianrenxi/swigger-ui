@@ -8,6 +8,7 @@ import { ApiDocMethodComponent } from './api-doc-method/api-doc-method.component
 import { ApiDocOperateComponent } from './api-doc-operate/api-doc-operate.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ConsoleuiModule } from 'console-ui-ng';
+import { ApiDocModelComponent } from './api-doc-model/api-doc-model.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ConsoleuiModule } from 'console-ui-ng';
     ConsoleuiModule,
   ],
   declarations: [ApiDocComponent, ApiDocInfoComponent, ApiDocTagComponent,
-    ApiDocPathComponent, ApiDocMethodComponent, ApiDocOperateComponent],
+    ApiDocPathComponent, ApiDocMethodComponent, ApiDocOperateComponent, ApiDocModelComponent],
   exports: [ApiDocComponent]
 })
 export class ApiDocModule { }

@@ -4,6 +4,7 @@
       <p>{{res.response.description}}</p>
       <div>
         {{res.response.schema | json}}
+        <sw-api-doc-model [definitions]="definitions" [definition]="res.response.schema"></sw-api-doc-model>
       </div>
       <div>
         响应类型：

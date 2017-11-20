@@ -32,7 +32,7 @@
                   <button type="button" class="btn btn-primary" (click)="run(cuurOperate)"> 运 行 </button>
                 </div>
               </div>
-              <sw-api-doc-operate *ngIf="cuurOperate" [operate]="cuurOperate.detail"></sw-api-doc-operate>
+              <sw-api-doc-operate *ngIf="cuurOperate" [operate]="cuurOperate.detail" [definitions]="definitions"></sw-api-doc-operate>
               <button type="button" class="btn btn-primary" (click)="run(cuurOperate)"> 运 行 </button>
               <div *ngIf="cuurOperate.result">{{cuurOperate.result | json}}</div>
             </ng-container>  

@@ -1,0 +1,24 @@
+<div *ngIf="isRef(definition)">
+  <sw-api-doc-model [definitions]="definitions" [definition]="getRef(definition['$ref'])"></sw-api-doc-model>
+</div>
+
+<div *ngIf="isObject(definition)">
+  <div>{{objectPrefix}}</div>
+    <div *ngFor="let prop of getProps(definition)">
+      {{prop.name}}: 
+      <ng-container *ngIf="isProp(prop)">
+        {{prop.type}}
+      </ng-container>
+      <ng-container *ngIf="!isProp(prop)">
+          <sw-api-doc-model [definitions]="definitions" [definition]="prop.def"></sw-api-doc-model>
+      </ng-container>
+      ,
+    </div>
+  <div>{{objectSuffix}}</div>
+</div>
+
+<div *ngIf="isArray(definition)">
+    <div>{{arrayPrefix}}</div>
+      <sw-api-doc-model [definitions]="definitions" [definition]="definition.items"></sw-api-doc-model>
+    <div>{{arraySuffix}}</div>
+</div>
